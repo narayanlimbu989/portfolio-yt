@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Alisha portfolio</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background: linear-gradient(45deg, #006eff, #ff00ee);
+      }
+      p,
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        padding: 20px 80px;
+      }
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .navbar > .left {
+        font-size: 30px;
+        cursor: pointer;
+        font-weight: 500;
+        padding: 0 10px;
+        border: 2px solid transparent;
+        border-radius: 5px;
+      }
+      .navbar > .left:hover {
+        transition: 0.7s;
+        background: #fff;
+        color: #000;
+        border: 2px solid #fff;
+        box-shadow: 1px 1px 10px 5px #fff;
+      }
+      .navbar > .right {
+        display: flex;
+        gap: 10px;
+      }
+      .navbar > .right > a {
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 18px;
+        padding: 0 5px;
+        border-radius: 30px;
+        border: 2px solid transparent;
+      }
+      .navbar > .right > a:hover {
+        transition: 0.7s;
+        background: #fff;
+        color: #000;
+        border: 2px solid #fff;
+        box-shadow: 1px 1px 10px 5px #fff;
+      }
+
+      /* homecontainer styling */
+      .homecontainer {
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .homecontainer > .left {
+        display: flex;
+        gap: 25px;
+        width: 600px;
+        font-size: 25px;
+      }
+      .icons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      i {
+        cursor: pointer;
+      }
+      .fa-facebook:hover {
+        transition: 0.7s;
+        color: blue;
+      }
+      .fa-instagram:hover {
+        transition: 0.7s;
+        color: #ff0088;
+      }
+      .fa-twitter:hover {
+        transition: 0.7s;
+        color: #00fffb;
+      }
+      .fa-tiktok:hover {
+        transition: 0.7s;
+        color: black;
+      }
+      .fa-youtube:hover {
+        transition: 0.7s;
+        color: red;
+      }
+      h3 {
+        font-size: 25px;
+        font-style: italic;
+        font-weight: 500;
+        animation: slightLeft 1s linear forwards;
+      }
+      h2 {
+        font-size: 30px;
+        font-weight: 700;
+        animation: slightRight 1s linear forwards;
+      }
+      h1 {
+        font-size: 35px;
+        font-weight: 700;
+        animation: slightLeft 1s linear forwards;
+      }
+      p {
+        text-align: justify;
+        font-size: 17px;
+        animation: slightRight 1s linear forwards;
+      }
+      button {
+        margin-top: 15px;
+        border: 2px solid transparent;
+        padding: 5px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 20px;
+        background: #fff;
+        font-family: cursive;
+        animation: slightTop 1s linear forwards;
+      }
+      button:hover {
+        transition: 0.7s;
+        background: #fff;
+        color: #000;
+        border: 2px solid #fff;
+        box-shadow: 1px 1px 10px 5px #fff;
+      }
+      .homecontainer > .right {
+        height: 600px;
+        width: 600px;
+        animation: slightTop 1s linear forwards;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        filter: drop-shadow(5px 5px 10px #555);
+      }
+
+      /* about container style */
+      .aboutcontainer {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .aboutcontainer > .right {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .aboutcontainer > .left {
+        width: 50%;
+      }
+      h4 {
+        font-size: 30px;
+        text-decoration: underline;
+      }
+
+      .itemscontainer > div {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      /* for flip card */
+      .flip-card {
+        background-color: transparent;
+        width: 300px;
+        height: 300px;
+        perspective: 1000px;
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+      .flip-card-front {
+        color: #000;
+      }
+      .flip-card-back {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #000;
+        color: #fff;
+        transform: rotateY(180deg);
+      }
+
+      /* contact style */
+      .contactcontainer {
+        margin-top: 40px;
+        position: relative;
+      }
+      .title {
+        font-size: 35px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .contactcontainer > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 610px;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      textarea {
+        width: 100%;
+        font-size: 20px;
+        padding: 5px;
+        outline: none;
+        border: none;
+      }
+      input {
+        font-size: 20px;
+        width: 285px;
+        padding: 8px;
+        outline: none;
+        border: none;
+      }
+      .gotop {
+        position: absolute;
+        background-color: white;
+        font-size: 30px;
+        cursor: pointer;
+        border-radius: 50%;
+        bottom: -10px;
+        right: 10px;
+        text-decoration: none;
+        padding: 5px;
+      }
+      /* For animation */
+
+      @keyframes slightLeft {
+        0% {
+          transform: translateX(100px);
+          opacity: 0;
+        }
+      }
+      @keyframes slightRight {
+        0% {
+          transform: translateX(-100px);
+          opacity: 0;
+        }
+      }
+      @keyframes slightTop {
+        0% {
+          transform: translateY(100px);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="left">Portfolio</div>
+        <div class="right">
+          <a href="#">Home</a>
+          <a href="#about">About</a>
+          <a href="#project">Projects</a>
+          <a href="#skill">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div id="#" class="homecontainer">
+        <div class="left">
+          <div class="icons">
+            |
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-tiktok"></i>
+            <i class="fa-brands fa-youtube"></i>
+            |
+          </div>
+          <div class="info">
+            <h3>Hello It's Me.</h3>
+            <h2>Alisha Limbu.</h2>
+            <h1>I am Web Developer.</h1>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque,
+              amet? Sequi expedita tempora dolor, maxime quia rerum, commodi
+              perspiciatis amet reiciendis unde repellat modi optio, laudantium
+              debitis. Sequi, minus sit.
+            </p>
+            <button>Hire Me</button>
+          </div>
+        </div>
+        <div class="right">
+          <img src="/img.png" alt="photo" />
+        </div>
+      </div>
+
+      <div id="about" class="aboutcontainer">
+        <div class="left">
+          <img src="/img2.png" alt="photo2" />
+        </div>
+        <div class="right">
+          <h4>About Me</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+            temporibus labore impedit tenetur cum ad, commodi sunt quia. Quod
+            debitis assumenda ab vitae quibusdam quidem excepturi sunt
+            laboriosam porro possimus?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+            temporibus labore impedit tenetur cum ad, commodi sunt quia. Quod
+            debitis assumenda ab vitae quibusdam quidem excepturi sunt
+            laboriosam porro possimus?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+            temporibus labore impedit tenetur cum ad, commodi sunt quia. Quod
+            debitis assumenda ab vitae quibusdam quidem excepturi sunt
+            laboriosam porro possimus?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+            temporibus labore impedit tenetur cum ad, commodi sunt quia. Quod
+            debitis assumenda ab vitae quibusdam quidem excepturi sunt
+            laboriosam porro possimus?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+            temporibus labore impedit tenetur cum ad, commodi sunt quia. Quod
+            debitis assumenda ab vitae quibusdam quidem excepturi sunt
+            laboriosam porro possimus?
+          </p>
+        </div>
+      </div>
+
+      <div id="project" class="itemscontainer">
+        <h4>Projects</h4>
+        <div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/p1.jpg" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>Food website</h1>
+                <p>Build and Design by A.Limbu</p>
+                <button>Visit site</button>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/p2.png" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>Food website</h1>
+                <p>Build and Design by A.Limbu</p>
+                <button>Visit site</button>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/p3.jpg" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>Food website</h1>
+                <p>Build and Design by A.Limbu</p>
+                <button>Visit site</button>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/p4.png" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>Food website</h1>
+                <p>Build and Design by A.Limbu</p>
+                <button>Visit site</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="skill" class="itemscontainer">
+        <h4>Skills</h4>
+        <div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/s1.png" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>HTML, CSS, Javascript</h1>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/s2.png" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>React Js, Next Js</h1>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/s3.png" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>Typescript</h1>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/s4.png" alt="project" />
+              </div>
+              <div class="flip-card-back">
+                <h1>MongoDB</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact" class="contactcontainer">
+        <div class="title">Have some Queries?</div>
+        <div>
+          <form>
+            <input type="text" placeholder="Full Name" />
+            <input type="text" placeholder="Enter Email" />
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              placeholder="Start Typing..."
+            ></textarea>
+            <button>Submit</button>
+          </form>
+        </div>
+        <a href="#" class="gotop">⬆️</a>
+      </div>
+    </div>
+  </body>
+</html>
